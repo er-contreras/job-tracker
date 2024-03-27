@@ -3,7 +3,7 @@
 require_relative '../lib/app'
 # require_relative 'manage_files'
 
-class Main
+class JobTracker
   # include ManageFiles
 
   @actions = {
@@ -12,7 +12,7 @@ class Main
     '3' => :exit
   }
 
-  def self.main
+  def self.job_tracker
     app = App.new
     status = true
 
@@ -50,4 +50,4 @@ class Main
   end
 end
 
-Main.main # Call main method to run the program.
+JobTracker.job_tracker # Call job-tracker method to run the program.
