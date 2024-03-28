@@ -3,16 +3,20 @@
 require_relative '../lib/app'
 # require_relative 'manage_files'
 
+OPTIONS = {
+  '1' => :add_job,
+  '2' => :list_all_jobs,
+  '3' => :exit
+}
+
 class JobTracker
   # include ManageFiles
 
-  @actions = {
-    '1' => :add_job,
-    '2' => :list_all_jobs,
-    '3' => :exit
-  }
+  def initialize
+    @actions = OPTIONS
+  end
 
-  def self.job_tracker
+  def job_tracker
     app = App.new
     status = true
 
@@ -34,7 +38,7 @@ class JobTracker
     end
   end
 
-  def self.call_case(app, action)
+  def call_case(app, action)
     if action
       case action
       when :exit
@@ -50,4 +54,4 @@ class JobTracker
   end
 end
 
-JobTracker.job_tracker # Call job-tracker method to run the program.
+JobTracker.new.job_tracker
