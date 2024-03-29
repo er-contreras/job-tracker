@@ -11,13 +11,14 @@ class App
     puts
     puts "Add the name of the job that you applied: "
     job_name = gets.chomp
-    puts "Add the job link where you applied"
+    puts "Add the job link where you applied: "
     job_link = gets.chomp
+    puts "Choose between these status 0) Applied, 1) Unknown: "
+    status_answer = gets.chomp.to_i
+    puts "Job Position: "
+    job_position = gets.chomp
 
     date_applied = Time.now.strftime("%d-%m-%Y")
-
-    puts "Choose between these status 0) Applied, 1) Unknown"
-    status_answer = gets.chomp.to_i
     job_status = STATUS[status_answer]
 
     puts
@@ -25,6 +26,7 @@ class App
       "job_name": job_name,
       "job_link": job_link,
       "job_status": job_status,
+      "job_position": job_position,
       "date_applied": date_applied
     }
 
@@ -44,6 +46,7 @@ class App
       puts "Name: #{job[:job_name]}"
       puts "Link: #{job[:job_link]}"
       puts "Status: #{job[:job_status]}"
+      puts "Position: #{job[:job_position]}"
       puts "Date: #{job[:date_applied]}"
       puts "----------------"
     end
