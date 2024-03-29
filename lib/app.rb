@@ -1,5 +1,5 @@
 class App
-  STATUS = { 0 => "call", 1 => "rejected", 2 => "Interviewed" }
+  STATUS = { 0 => "Applied", 1 => "Unknown" }
 
   def initialize(jobs = [])
     @jobs = jobs
@@ -20,11 +20,13 @@ class App
 
     puts
     hash = {
-      "Job name": job_name,
-      "Job link": job_link,
-      "Date applied": date_applied,
-      "Job status": job_status
+      "job_name": job_name,
+      "job_link": job_link,
+      "job_status": job_status,
+      "date_applied": date_applied
     }
+
+    @jobs.push(hash)
 
     puts "You have been added:"
     hash.each do |k, v|
@@ -34,7 +36,15 @@ class App
 
   def list_all_jobs
     puts
-    puts "Feature under construction!"
+    puts "Jobs that you have been applied:"
+    puts
+    @jobs.each do |job|
+      puts "Name: #{job[:job_name]}"
+      puts "Link: #{job[:job_link]}"
+      puts "Status: #{job[:job_status]}"
+      puts "Date: #{job[:date_applied]}"
+      puts "----------------"
+    end
   end
 
   def update_status
