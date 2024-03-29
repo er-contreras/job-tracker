@@ -6,7 +6,8 @@ require_relative '../lib/app'
 OPTIONS = {
   '1' => :add_job,
   '2' => :list_all_jobs,
-  '3' => :exit
+  '3' => :update_status,
+  '4' => :exit
 }
 
 class JobTracker
@@ -14,42 +15,35 @@ class JobTracker
 
   def initialize
     @actions = OPTIONS
+    @status = true
   end
 
   def job_tracker
     app = App.new
-    status = true
 
     puts
-    puts 'Welcome to job tracker app!'
-    while status
+    puts 'Welcome to Job Tracker'
+    while @status
       puts
       puts 'Please choose an option by enterin a number:'
       puts '1 - Add new job'
-      puts '2 - List all jobs application'
-      puts '3 - Exit'
+      puts '2 - List all job applications'
+      puts '3 - Update status'
+      puts '4 - Exit'
 
       option = gets.chomp
       action = @actions[option]
 
-      call_case(app, action) do
-        status = false
-      end
+      call_case(app, action)
     end
   end
 
   def call_case(app, action)
     if action
-      case action
-      when :exit
-        puts 'Thank you for using this app!'
-        # ManageFiles.create_files
-        yield
-      else
-        app.send(action)
-      end
+      app.send(action)
+      @status = false if action == :exit
     else
-      puts 'Sorry, you choose a wrong option'
+      puts('Sorry, you choose a wrong option')
     end
   end
 end
