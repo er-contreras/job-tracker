@@ -1,7 +1,6 @@
 #! /usr/bin/env ruby
 
 require_relative '../lib/app'
-# require_relative 'manage_files'
 
 OPTIONS = {
   '1' => :add_job,
@@ -11,8 +10,6 @@ OPTIONS = {
 }
 
 class JobTracker
-  # include ManageFiles
-
   def initialize
     @actions = OPTIONS
     @status = true

@@ -5,6 +5,8 @@ class App
     @jobs = jobs
   end
 
+  private
+
   def add_job
     puts
     puts "Add the name of the job that you applied: "
@@ -54,7 +56,5 @@ class App
 
   def exit
     puts 'Thank you for using this app!'
-    # ManageFiles.create_files
-
   end
 end
