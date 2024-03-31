@@ -37,17 +37,20 @@ module Model
     end
 
     def self.create(attrs)
-      hash = {}
-      hash["job_name"] = attrs["job_name"] || ""
-      hash["job_link"] = attrs["job_link"] || ""
-      hash["job_status"] = attrs["job_status"] || ""
-      hash["job_position"] = attrs["job_position"] || ""
-      hash["date_applied"] = attrs["date_applied"] || ""
+      defaults = {
+        "job_name" => "",
+        "job_link" => "",
+        "job_status" => "",
+        "job_position" => "",
+        "date_applied" => ""
+      }
+
+      hash = defaults.merge(attrs)
 
       files = Dir.glob(FILES_PATH)
-      names = files.map { |f| File.split(f)[-1] }
-      highest = names.map { |b| b.to_i }.max
-      id = !highest.nil? ? highest + 1 : 1
+      names = files.map { |f| File.split(f)[-1].to_i }
+      highest = names.max || 0
+      id = highest + 1
 
       File.open(file_path_for_id(id), "w") do |f|
         f.write <<~TEMPLATE

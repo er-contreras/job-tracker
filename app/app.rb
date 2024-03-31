@@ -1,7 +1,7 @@
 require_relative 'model/file_model'
 
 class App
-  STATUS = { 0 => "Applied", 1 => "Unknown" }
+  STATUS = { 0 => "Unknown", 1 => "Applied" }
 
   def initialize(jobs = [])
     @jobs = jobs
