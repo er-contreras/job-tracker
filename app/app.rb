@@ -42,7 +42,7 @@ class App
 
   def list_all_jobs
     puts
-    print "Jobs that you have been applied: "
+    puts "Jobs that you have been applied: "
     puts
 
     jobs = Model::FileModel.all
