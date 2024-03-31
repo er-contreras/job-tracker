@@ -6,3 +6,10 @@
 
 ## Run the job tracker on terminal
 - On macOS once you have addded the executable on your $PATH you can run `open bin/job-tracker`
+
+## Example
+
+
+https://github.com/er-contreras/job-tracker/assets/67211919/6321fa8e-c84b-4083-8d2d-a282dd979bb3
+
+
