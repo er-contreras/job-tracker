@@ -1,3 +1,4 @@
 .idea
 job-tracker.iml
 .DS_Store
+/db/jobs

@@ -24,19 +24,25 @@ class App
     job_status = STATUS[status_answer]
 
     puts
-    hash = {
-      "job_name": job_name,
-      "job_link": job_link,
-      "job_status": job_status,
-      "job_position": job_position,
-      "date_applied": date_applied
+    attrs = {
+      "job_name" => job_name,
+      "job_link" => job_link,
+      "job_status" => job_status,
+      "job_position" => job_position,
+      "date_applied" => date_applied
     }
 
-    @jobs.push(hash)
+    job = Model::FileModel.create(attrs)
 
-    puts "You have been added: "
-    hash.each do |k, v|
-      puts "- #{k}: #{v}"
+    if job
+      puts "You have just added a new job"
+      puts
+      puts "Name: #{job[:job_name]}"
+      puts "Link: #{job[:job_link]}"
+      puts "Status: #{job[:job_status]}"
+      puts "Position: #{job[:job_position]}"
+      puts "Date: #{job[:date_applied]}"
+      puts "----------------"
     end
   end
 
@@ -66,7 +72,7 @@ class App
 
     if job.nil?
       puts
-      puts "There is no data with that id"
+      puts "There is no data available with that id"
     else
       puts
       puts "Name: #{job[:job_name]}"
