@@ -50,7 +50,7 @@ module Model
       id = !highest.nil? ? highest + 1 : 1
 
       File.open(file_path_for_id(id), "w") do |f|
-        f.write <<-TEMPLATE
+        f.write <<~TEMPLATE
           {
             "job_name": "#{hash["job_name"]}",
             "job_link": "#{hash["job_link"]}",
