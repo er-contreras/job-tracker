@@ -40,21 +40,19 @@ class App
 
   def add_job
     puts
-    print "Add the name of the job that you applied: "
-    job_name = gets.chomp
+    print "Add the name of the company where you applied: "
+    company_name = gets.chomp
     print "Add the job link where you applied: "
     job_link = gets.chomp
-    print "Choose between these status 0) Applied, 1) Unknown: "
-    status_answer = gets.chomp.to_i
     print "Job Position: "
     job_position = gets.chomp
 
+    job_status = "applied"
     date_applied = Time.now.strftime("%d-%m-%Y")
-    job_status = STATUS[status_answer]
 
     puts
     attrs = {
-      "job_name" => job_name,
+      "company_name" => company_name,
       "job_link" => job_link,
       "job_status" => job_status,
       "job_position" => job_position,
@@ -66,7 +64,7 @@ class App
     if job
       puts "You have just added a new job"
       puts
-      puts "Name: #{job[:job_name]}"
+      puts "Company Name: #{job[:company_name]}"
       puts "Link: #{job[:job_link]}"
       puts "Status: #{job[:job_status]}"
       puts "Position: #{job[:job_position]}"
@@ -104,7 +102,7 @@ class App
       puts "There is no data available with that id"
     else
       puts
-      puts "Name: #{job[:job_name]}"
+      puts "Company name: #{job[:company_name]}"
       puts "Link: #{job[:job_link]}"
       puts "Status: #{job[:job_status]}"
       puts "Position: #{job[:job_position]}"

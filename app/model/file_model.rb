@@ -38,7 +38,7 @@ module Model
 
     def self.create(attrs)
       defaults = {
-        "job_name" => "",
+        "company_name" => "",
         "job_link" => "",
         "job_status" => "",
         "job_position" => "",
