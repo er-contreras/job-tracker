@@ -78,16 +78,7 @@ class App
     puts "Jobs that you have been applied: "
     puts
 
-    jobs = Model::FileModel.all
-
-    jobs.each do |job|
-      puts "Name: #{job[:job_name]}"
-      puts "Link: #{job[:job_link]}"
-      puts "Status: #{job[:job_status]}"
-      puts "Position: #{job[:job_position]}"
-      puts "Date: #{job[:date_applied]}"
-      puts "----------------"
-    end
+    return "No jobs here yet" if Model::FileModel.all.nil?
   end
 
   def find_by_id

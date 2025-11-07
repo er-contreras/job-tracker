@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative "../app/app"
+
+# Create an instance of your main app class
+app = App.new
+
+# Run it
+app.run
+

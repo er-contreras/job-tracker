@@ -1,4 +1,5 @@
 require 'json'
+require 'fileutils'
 
 module Model
   class FileModel
@@ -24,8 +25,22 @@ module Model
 
     def self.all
       files = Dir.glob(FILES_PATH)
+      if files.empty?
+        puts "No jobs found."
+        return
+      end
+    
+      files.each do |file|
+        data = JSON.parse(File.read(file))
+        id = File.basename(file, ".json")
 
-      files.map { |f| FileModel.new f }
+        puts "ID: #{id}"
+        puts "Company: #{data["company_name"]}"
+        puts "Position: #{data["job_position"]}"
+        puts "Status: #{data["job_status"]}"
+        puts "Applied on: #{data["date_applied"]}"
+        puts "-" * 40
+      end
     end
 
     def self.find(id)
@@ -52,10 +67,14 @@ module Model
       highest = names.max || 0
       id = highest + 1
 
-      File.open(file_path_for_id(id), "w") do |f|
+      path = file_path_for_id(id)
+      FileUtils.mkdir_p(File.dirname(path))
+
+      File.open(path, "w") do |f|
         f.write <<~TEMPLATE
           {
-            "job_name": "#{hash["job_name"]}",
+            "job_id": "#{id}",
+            "company_name": "#{hash["company_name"]}",
             "job_link": "#{hash["job_link"]}",
             "job_status": "#{hash["job_status"]}",
             "job_position": "#{hash["job_position"]}",
