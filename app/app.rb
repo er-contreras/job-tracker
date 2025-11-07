@@ -1,10 +1,39 @@
 require_relative 'model/file_model'
 
 class App
-  STATUS = { 0 => "Unknown", 1 => "Applied" }
-
   def initialize(jobs = [])
     @jobs = jobs
+  end
+
+  def run
+    puts "Welcome to Job Tracker!"
+
+    loop do
+      puts
+      puts "Please choose an option by entering a number:"
+      puts "1 - Add new company name"
+      puts "2 - List all job applications"
+      puts "3 - Find job by ID"
+      puts "4 - Update status"
+      puts "5 - Exit"
+
+      choice = gets.chomp.to_i
+      case choice
+      when 1
+        add_job
+      when 2
+        list_all_jobs
+      when 3
+        find_by_id
+      when 4
+        update_status
+      when 5
+        puts "Goodbye!"
+        break
+      else
+        puts "Option not yet implemented."
+      end
+    end
   end
 
   private
